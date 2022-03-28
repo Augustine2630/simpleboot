@@ -3,23 +3,25 @@ package com.example.simpleboot.Model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "movement")
+@Table(name = "traj")
 @Data
-public class Movement{
-
+public class Coordinates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    private int id;
+
     @Column(name = "start_x")
     private int startX;
     @Column(name = "start_y")
     private int startY;
+    @Column(name = "end_x")
+    private int endX;
+    @Column(name = "end_y")
+    private int endY;
 
-
-    public Movement() {
+    public Coordinates() {
     }
 }
