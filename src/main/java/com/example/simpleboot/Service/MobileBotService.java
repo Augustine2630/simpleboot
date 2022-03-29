@@ -18,10 +18,14 @@ public class MobileBotService {
     }
 
     public MobileBot findBySerial(int cartSerial){
-        return mobileBotRepository.getById(cartSerial);
+        return mobileBotRepository.findAllByCartSerial(cartSerial);
     }
+
+
 
     public List<MobileBot> findAll(){
         return mobileBotRepository.findAll();
     }
+
+
 }

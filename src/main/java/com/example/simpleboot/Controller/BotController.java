@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -24,5 +27,11 @@ public class BotController {
         List<MobileBot> bots = mobileBotService.findAll();
         model.addAttribute("bots", bots);
         return "bot-list";
+    }
+
+    @RequestMapping("/bots/{cartSerial}")
+    public String findBySerial(@PathVariable("cartSerial") int cartSerial, Model model){
+        model.addAttribute("serial", mobileBotService.findBySerial(cartSerial));
+        return "currentBot";
     }
 }

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MobileBotRepository extends JpaRepository<MobileBot, Integer> {
+    MobileBot findAllByCartSerial(int cartSerial);
 }
