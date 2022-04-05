@@ -2,16 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>ShowAllTheContent</title>
+    <title>Bot Page</title>
 </head>
 <body>
 <p th:text="${serial.getDepartment() + '. '}">VALUE</p>
 <p th:text="${serial.getCartSerial()}">VALUE</p>
 
-<!-- <a th:href="@{/tfpage/{id}/edit(id=${content.getId()})}">Edit</a> -->
+<a th:href="/">See the Map</a>
 
-<!-- <form th:method="DELETE" th:action="@{/tfpage/{id}(id=${content.getId()})}"> -->
-<!--     <input type="submit" value="Delete"/> -->
+
 
 </body>
 </html>

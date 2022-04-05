@@ -20,7 +20,8 @@
             <tbody>
             <tr th:each="bot : ${bots}">
                 <td th:text="${bot.id}"></td>
-                <td th:text="${bot.cartSerial}"></td>
+                <td><a th:href="@{/bots/{cartSerial}(cartSerial=${bot.getCartSerial()})}"
+                th:text="${bot.cartSerial}"></a></td>
                 <td th:text="${bot.department}"></td>
 <!--                 <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td> -->
 <!--                 <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td> -->

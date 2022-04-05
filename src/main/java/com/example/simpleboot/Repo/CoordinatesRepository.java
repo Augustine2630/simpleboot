@@ -9,4 +9,6 @@ import java.util.List;
 
 @Repository
 public interface CoordinatesRepository extends JpaRepository<Coordinates, Integer> {
+    @Query(value = "SELECT start_x, start_y FROM traj WHERE cart_serial=?1", nativeQuery = true)
+    List<Coordinates> findAllByCartSerial(int cartSerial);
 }
