@@ -21,7 +21,7 @@ public class CoordinatesService {
         return coordinatesRepository.findAll();
     }
 
-    public List<Coordinates> findCoordinates(int cartSerial){
+    public List<Coordinates> findBySerialCoordinates(int cartSerial){
         return coordinatesRepository.findAllByCartSerial(cartSerial);
     }
 

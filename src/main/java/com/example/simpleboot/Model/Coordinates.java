@@ -12,15 +12,12 @@ public class Coordinates {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
     @Column(name = "start_x")
     private int startX;
     @Column(name = "start_y")
     private int startY;
-    @Column(name = "end_x")
-    private int endX;
-    @Column(name = "end_y")
-    private int endY;
+    @Column(name="cart_serial")
+    private int cartSerial;
 
     public Coordinates() {
     }

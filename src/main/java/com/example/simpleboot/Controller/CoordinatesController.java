@@ -5,6 +5,7 @@ import com.example.simpleboot.Service.CoordinatesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,8 +27,11 @@ public class CoordinatesController {
         return "Coordinates";
     }
 
-    public String findCoordinates(@RequestParam("cartSerial") int cartSerial, Model model){
-
+    @RequestMapping("/map/{cartSerial}")
+    public String findCoordinates(@PathVariable("cartSerial") int cartSerial, Model model){
+            List<Coordinates> mapCoordinates = coordinatesService.findBySerialCoordinates(cartSerial);
+            model.addAttribute("coordinate", mapCoordinates);
+            return "road-page";
     }
 
 }

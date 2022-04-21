@@ -5,7 +5,7 @@
     <title>Users</title>
 </head>
 <body>
-<div th:switch="${coordinates}">
+<div th:switch="${coordinate}">
     <h2 th:case="null">No users found!</h2>
     <div th:case="*">
         <h2>Users</h2>
@@ -18,9 +18,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="xy : ${coordinates}">
-                <td th:text="${xy.startX}"></td>
-                <td th:text="${xy.startY}"></td>
+            <tr th:each="xyz : ${coordinate}">
+                <td th:text="${xyz.startX}"></td>
+                <td th:text="${xyz.startY}"></td>
             </tr>
             </tbody>
         </table>
