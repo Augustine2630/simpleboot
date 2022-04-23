@@ -26,5 +26,11 @@
         </table>
     </div>
 </div>
+<div>
+    <form action="#" th:action="@{/road}" th:object="${road}" method="get">
+        <button type="submit"> Calculate, please reload the page </button>
+    </form>
+    <img th:src="@{/img/roadimg.jpg}" alt="nothing"/>
+</div>
 </body>
 </html>
