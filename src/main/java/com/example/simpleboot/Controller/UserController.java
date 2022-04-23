@@ -2,6 +2,7 @@ package com.example.simpleboot.Controller;
 
 import com.example.simpleboot.Model.User;
 import com.example.simpleboot.Service.UserService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -21,10 +21,16 @@ public class MobileBotService {
         return mobileBotRepository.findAllByCartSerial(cartSerial);
     }
 
-
+    public void saveBot(MobileBot mobileBot){
+        mobileBotRepository.save(mobileBot);
+    }
 
     public List<MobileBot> findAll(){
         return mobileBotRepository.findAll();
+    }
+
+    public void deleteBot(int cartSerial){
+        this.mobileBotRepository.deleteByCartSerial(cartSerial);
     }
 
 

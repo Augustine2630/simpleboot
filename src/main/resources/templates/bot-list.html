@@ -2,19 +2,19 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>Bots</title>
 </head>
 <body>
 <div th:switch="${bots}">
-    <h2 th:case="null">No users found!</h2>
+    <h2 th:case="null">No bots found!</h2>
     <div th:case="*">
-        <h2>Users</h2>
+        <h2>Bots</h2>
         <table>
             <thead>
             <tr>
                 <th>Id</th>
-                <th>First name</th>
-                <th>Last name</th>
+                <th>Serial number</th>
+                <th>Department</th>
             </tr>
             </thead>
             <tbody>
@@ -23,13 +23,13 @@
                 <td><a th:href="@{/bots/{cartSerial}(cartSerial=${bot.getCartSerial()})}"
                 th:text="${bot.cartSerial}"></a></td>
                 <td th:text="${bot.department}"></td>
-<!--                 <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td> -->
-<!--                 <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td> -->
+                 <td><a th:href="@{/showFormForUpdate/{cartSerial}(cartSerial=${bot.cartSerial})}">Edit</a></td>
+                 <td><a th:href="@{/deleteBot/{cartSerial}(cartSerial=${bot.cartSerial})}">Delete</a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/user-create">Create user</a></p>
+    <p><a href="/bot-create">Add new Bot</a></p>
 </div>
 </body>
 </html>
