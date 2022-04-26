@@ -12,4 +12,7 @@ public interface MobileBotRepository extends JpaRepository<MobileBot, Integer> {
     @Transactional
     void deleteByCartSerial(int cartSerial);
 
+
+    MobileBot updateSerial();
+
 }

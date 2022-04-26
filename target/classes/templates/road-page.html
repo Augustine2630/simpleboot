@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div th:switch="${coordinate}">
+    <h2 th:case="null">No users found!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="xyz : ${coordinate}">
+                <td th:text="${xyz.startX}"></td>
+                <td th:text="${xyz.startY}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <form action="#" th:action="@{/road}" th:object="${road}" method="get">
+        <button type="submit"> Calculate, please reload the page </button>
+    </form>
+    <img th:src="@{/img/roadimg.jpg}" alt="nothing"/>
+</div>
+</body>
+</html>

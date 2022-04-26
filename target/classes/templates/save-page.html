@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add bot</title>
+</head>
+<body>
+<form action="#" th:action="@{/bot-create}" th:object="${mobileBot}" method="post">
+    <label for="firstName">Serial number</label>
+    <input type="text" th:field="*{cartSerial}" id="firstName" placeholder="Serial number">
+    <td style="color:red" th:if="${#fields.hasErrors('cartSerial')}" th:errors="*{cartSerial}">Serial Error</td>
+    <label for="lastName">Department</label>
+    <input type="text" th:field="*{department}" id="lastName" placeholder="Department">
+    <input type="submit" value="Create Bot">
+</form>
+</body>
+</html>

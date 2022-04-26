@@ -1,5 +1,7 @@
 package com.example.simpleboot.Service;
 
+import com.example.simpleboot.Model.MobileBot;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
@@ -12,186 +14,13 @@ import java.util.*;
 @Service
 public class ImageService {
 
+
+
+    MobileBot mobileBot = new MobileBot();
     String[] supported_extensions = new String[]{"jpg", "png", "gif"};
 
-    public void startGenerator() {
-        display("- - - - IMAGE DATASET GENERATOR - - - -\n");
+    String path = "D:\\images";
 
-        //Keep running the program until user exits the tool. This will allow to generate multiple datasets at once.
-        while (true) {
-            int approach;
-            int no_of_files;
-            int dataset_size;
-            int exit_choice;
-            long startTime = System.currentTimeMillis();
-
-            Scanner scanner = new Scanner(System.in);
-
-            display("\nEnter full path of folder in which you would like to generate dataset. "
-                    + "\ne.g. D:\\100ImagesSet\\ \nPath:");
-
-            String path = "C:\\Users\\Augustine\\IdeaProjects\\simpleboot\\src\\main\\resources\\static\\img";
-
-            display("\nSelect your approach:\n"
-                    + "1: Generate by number of files\n"
-                    + "2: Generate by size\n"
-                    + "3: Generate by number of files & size"
-                    + "\nEnter your choice (1, 2 or 3): ");
-
-            approach = 1;
-
-            if(approach == 3) {
-                display("\nWhich extensions do you want?\n"
-                        + "1: jpg\n"
-                        + "2: png\n"
-                        + "3: jpg & png\n"
-                        + "Your choice: ");
-
-            }
-            else {
-                display("\nWhich extensions do you want?\n"
-                        + "1: jpg\n"
-                        + "2: png\n"
-                        + "3: jpg & png\n"
-                        + "4: gif\n"
-                        + "5: jpg, png, gif, jpeg (All formats)\n"
-                        + "Your choice: ");
-            }
-
-            int extension_choice = 1;
-
-            switch (extension_choice) {
-                case 1:
-                    supported_extensions = new String[]{"jpg"};
-                    break;
-
-                case 2:
-                    supported_extensions = new String[]{"png"};
-                    break;
-
-                case 3:
-                    supported_extensions = new String[]{"jpg", "png"};
-                    break;
-
-                case 4:
-                    supported_extensions = new String[]{"gif"};
-                    break;
-
-                case 5:
-                    supported_extensions = new String[]{"jpg", "png", "jpeg", "gif"};
-                    break;
-
-                default:
-                    supported_extensions = new String[]{"jpg", "png", "jpeg", "gif"};
-                    break;
-            }
-
-            switch (approach) {
-                case 1:
-                    display("\nEnter number of files: ");
-                    no_of_files = 2;
-                    display("Your dataset is being generated at: " + path + "\nPlease wait. It may take a while...");
-                    startTime = System.currentTimeMillis();
-                    generateByNumberOfFiles(no_of_files, path);
-                    break;
-
-                case 2:
-                    display("\nEnter size of dataset in MB: ");
-                    dataset_size = 1;
-                    startTime = System.currentTimeMillis();
-                    display("Your dataset is being generated at: " + path + "\nPlease wait. It may take a while...");
-                    generateBySize(dataset_size, path);
-                    break;
-
-                case 3:
-                    display("\nEnter number of files: ");
-                    no_of_files = scanner.nextInt();
-
-                    display("\nEnter size of dataset in MB: ");
-                    dataset_size = scanner.nextInt();
-
-                    startTime = System.currentTimeMillis();
-                    display("Your dataset is being generated at: " + path + "\nPlease wait. It may take a while...");
-                    generateBySizeCount(dataset_size, no_of_files, path);
-                    break;
-            }
-
-            display("\n- - - - SUCCESS - - - -\n"
-                    + "\nTime taken (secs): " + (System.currentTimeMillis() - startTime) / 1000 + "\nPress 1 to generate another dataset. Any other key to exit.\nEnter: ");
-
-            exit_choice = scanner.nextInt();
-
-            if (exit_choice == 1) {
-                continue;
-            } else {
-                break;
-            }
-        }
-    }
-
-    private void generateByNumberOfFiles(int no_of_files, String path) {
-        Random rand = new Random();
-
-        while (no_of_files > 0) {
-            //+100 so that image file will not end up with size less than 100px.
-            width = (1100);
-            height = (1100);
-            generateImage(path);
-            no_of_files--;
-        }
-    }
-
-    private void generateBySize(int dataset_size_mb, String path) {
-        long generated_size_bytes;
-        long dataset_size_bytes = dataset_size_mb * 1024L * 1024L;
-        Random rand = new Random();
-
-        while (dataset_size_bytes > 0) {
-            width = (1000) + 100;
-            height = (1000) + 100;
-            generated_size_bytes = generateImage(path);
-            dataset_size_bytes = dataset_size_bytes - generated_size_bytes;
-        }
-    }
-
-    private void generateBySizeCount(int dataset_size_mb_in, int no_of_files_in, String path_in) {
-
-        if(supported_extensions.length == 1) {
-            if(supported_extensions[0].equals("jpg")) {
-                int individual_size_kb = (int)((float)dataset_size_mb_in / no_of_files_in) * 1000;
-                width = height = jpgHashmap.get(individual_size_kb);
-                runLoop(no_of_files_in, path_in);
-            }
-            else if(supported_extensions[0].equals("png")){
-                int individual_size_kb = (int)((float)dataset_size_mb_in / no_of_files_in) * 1000;
-                width = height = pngHashmap.get(individual_size_kb);
-                runLoop(no_of_files_in, path_in);
-            }
-        }
-        else {
-            int part1 = no_of_files_in/2;
-            int part2 = no_of_files_in - part1;
-
-            int individual_size_kb = (int)((float)(dataset_size_mb_in/2) / part1) * 1000;
-            width = height = jpgHashmap.get(individual_size_kb);
-            supported_extensions = new String[]{"jpg"};
-            runLoop(part1, path_in);
-
-            individual_size_kb = (int)((float)(dataset_size_mb_in/2) / part2) * 1000;
-            width = height = pngHashmap.get(individual_size_kb);
-            supported_extensions = new String[]{"png"};
-            runLoop(part2, path_in);
-        }
-
-
-    }
-
-    private void runLoop(int no_of_files_in, String path_in) {
-        while(no_of_files_in > 0) {
-            generateImage(path_in);
-            no_of_files_in--;
-        }
-    }
 
     //Mapping between image size and pixels needed. Don't ask me how did I get these values! ;)
     HashMap<Integer, Integer> jpgHashmap = new HashMap<Integer, Integer>() {
@@ -228,7 +57,17 @@ public class ImageService {
     int width = 1000;
     int height = 1000;
 
-    private long generateImage(String path_name) {
+//    public static void drawer(int x, int y, int end_x, int end_y){
+//        int width = 1000;
+//        int height = 1000;
+//        BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+//        Graphics2D g = img.createGraphics();
+//        Graphics2D g2D = (Graphics2D) g;
+//        g2D.setStroke(new BasicStroke(50));
+//        g2D.drawRect(x, y, end_x, end_y);
+//    }
+
+    public long generateImage(String path_name, int x, int y, int end_x, int end_y) {
         Random rand = new Random();
         String extension = supported_extensions[rand.nextInt(supported_extensions.length)];
 
@@ -238,12 +77,21 @@ public class ImageService {
 
         File f = null;
 
+//        Graphics2D g = img.createGraphics();
+//
+//        Graphics2D g2D = (Graphics2D) g;
+//
+//        g2D.setStroke(new BasicStroke(50));
+//        g2D.drawRect(1, 1, 1100, 1100);
+
+        int width = 1000;
+        int height = 1000;
         Graphics2D g = img.createGraphics();
-
         Graphics2D g2D = (Graphics2D) g;
-
         g2D.setStroke(new BasicStroke(50));
-        g2D.drawRect(1, 1, 1100, 1100);
+        g2D.drawRect(x, y, end_x, end_y);
+
+
 
         try {
             if (!(new File(path_name).exists())) {
@@ -276,23 +124,8 @@ public class ImageService {
     //Always generate unique name
     private Set<String> identifiers = new HashSet<>();
 
-    private String generateName() {
-
-//        String lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz12345674890";
+    public String generateName() {
         String imageName = "roadimg";
-//        Random rand = new java.util.Random();
-//
-//        StringBuilder builder = new StringBuilder();
-//        while (builder.toString().length() == 0) {
-//            int length = rand.nextInt(20);
-//            for (int i = 0; i < length; i++) {
-//                builder.append(lexicon.charAt(rand.nextInt(lexicon.length())));
-//            }
-//            if (identifiers.contains(builder.toString())) {
-//                builder = new StringBuilder();
-//            }
-//        }
-//        return builder.toString();
         return imageName;
     }
 
@@ -307,8 +140,6 @@ public class ImageService {
         }
     }
 
-    public void start(){
-        startGenerator();
-    }
+
 
 }
