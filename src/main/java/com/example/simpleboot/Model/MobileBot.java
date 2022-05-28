@@ -1,12 +1,16 @@
 package com.example.simpleboot.Model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "bots")
 public class MobileBot {
 
@@ -25,8 +29,4 @@ public class MobileBot {
     private String department;
 
 
-
-    public MobileBot() {
-
-    }
 }

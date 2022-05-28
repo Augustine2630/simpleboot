@@ -25,4 +25,8 @@ public class CoordinatesService {
         return coordinatesRepository.findAllByCartSerial(cartSerial);
     }
 
+    public Coordinates calculateRoute(Coordinates coordinates){
+        return coordinatesRepository.save(coordinates);
+    }
+
 }

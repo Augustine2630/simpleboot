@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/calculate-route}" th:object="${coordinates}" method="post">
+  <label for="cartSerial">Serial number</label>
+  <input type="text" th:field="*{cartSerial}" id="cartSerial" placeholder="cart Serial">
+  <label for="endX">end x</label>
+  <input type="text" th:field="*{endX}" id="endX" placeholder="end x">
+  <label for="endY">End y</label>
+  <input type="text" th:field="*{endY}" id="endY" placeholder="end y">
+  <input type="submit" value="Calculate the route">
+</form>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.example.simpleboot.Controller;
 
+import com.example.simpleboot.Model.Coordinates;
 import com.example.simpleboot.Model.MobileBot;
 import com.example.simpleboot.Service.MobileBotService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,10 @@ public class BotController {
     }
 
     @GetMapping("/bots")
-    public String findAll(Model model){
+    public String findAll(Model model, Coordinates coordinates){
         List<MobileBot> bots = mobileBotService.findAll();
         model.addAttribute("bots", bots);
+        model.addAttribute("coord", coordinates);
         return "bot-list";
     }
 

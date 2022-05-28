@@ -1,14 +1,15 @@
 package com.example.simpleboot.Controller;
 
 import com.example.simpleboot.Model.Coordinates;
+import com.example.simpleboot.Model.MobileBot;
 import com.example.simpleboot.Service.CoordinatesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -32,6 +33,26 @@ public class CoordinatesController {
             List<Coordinates> mapCoordinates = coordinatesService.findBySerialCoordinates(cartSerial);
             model.addAttribute("coordinate", mapCoordinates);
             return "road-page";
+    }
+
+
+    @GetMapping("/calculate-page")
+    public String createBotForm(Coordinates coordinates){
+        return "calculate-page";
+    }
+
+    @PostMapping("/calculate-route")
+    public String createBot(Coordinates coordinates, BindingResult bindingResult){
+        if(bindingResult.hasErrors())
+            return "bot-list";
+        coordinatesService.calculateRoute(coordinates);
+        return "redirect:/bots";
+    }
+
+    @PostMapping("/send-data")
+    public String sendDataToBot(){
+
+        return "redirect:/map";
     }
 
 }
