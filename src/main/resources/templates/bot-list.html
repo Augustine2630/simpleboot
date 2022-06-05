@@ -3,33 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Bots</title>
+    <style>
+        #bot-table {
+            position: absolute;
+            left: 500px;
+            font-size: 50px;
+        }
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+            border: 15px solid #F2F8F8;
+            border-top: 5px solid #F2F8F8;
+            border-collapse: collapse;
+        }
+        .table th {
+            font-weight: bold;
+            padding: 5px;
+            background: #F2F8F8;
+            border: none;
+            border-bottom: 5px solid #F2F8F8;
+        }
+        .table td {
+            padding: 5px;
+            border: none;
+            border-bottom: 5px solid #F2F2F8;
+        }
+
+    </style>
 </head>
 <body>
-<div th:switch="${bots}">
-    <h2 th:case="null">No bots found!</h2>
-    <div th:case="*">
-        <h2>Bots</h2>
-        <table>
+<div id="bot-table" th:switch="${bots}">
+    <h2 th:case="null">Не найдено мобильных платформ!</h2>
+    <div  th:case="*">
+        <h2>Мобильные платформы</h2>
+        <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Serial number</th>
-                <th>Department</th>
+
+                <th>Серийный номер</th>
+                <th>Цех</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="bot : ${bots}">
-                <td th:text="${bot.id}"></td>
-                <td><a th:href="@{/bots/{cartSerial}(cartSerial=${bot.getCartSerial()})}"
+                <td><a th:href="@{/bots/{cartSerial}(cartSerial=${bot.cartSerial})}"
                 th:text="${bot.cartSerial}"></a></td>
                 <td th:text="${bot.department}"></td>
-                 <td><a th:href="@{/showFormForUpdate/{cartSerial}(cartSerial=${bot.cartSerial})}">Edit</a></td>
-                 <td><a th:href="@{/deleteBot/{cartSerial}(cartSerial=${bot.cartSerial})}">Delete</a></td>
+                 <td><a th:href="@{/showFormForUpdate/{cartSerial}(cartSerial=${bot.cartSerial})}">Редактировать</a></td>
+                 <td><a th:href="@{/deleteBot/{cartSerial}(cartSerial=${bot.cartSerial})}">Удалить</a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/bot-create">Add new Bot</a></p>
+    <form id="addbot" action="/bot-create">
+        <button style="font-size: 50px" type="submit">Добавить робота</button>
+    </form>
 </div>
 </body>
 </html>

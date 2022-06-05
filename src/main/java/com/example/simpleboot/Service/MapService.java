@@ -15,7 +15,13 @@ public class MapService {
         this.mapRepository = mapRepository;
     }
 
+
+
     public List<Map> mapList(){
         return mapRepository.findAll();
+    }
+
+    public List<Map> mapListOne(String one){
+        return mapRepository.findByOne(one);
     }
 }

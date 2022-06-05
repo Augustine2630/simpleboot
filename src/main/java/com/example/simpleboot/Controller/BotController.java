@@ -1,14 +1,15 @@
 package com.example.simpleboot.Controller;
 
 import com.example.simpleboot.Model.Coordinates;
+import com.example.simpleboot.Model.Map;
 import com.example.simpleboot.Model.MobileBot;
+import com.example.simpleboot.Service.MapService;
 import com.example.simpleboot.Service.MobileBotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.validation.Valid;
 
@@ -18,10 +19,12 @@ import java.util.List;
 public class BotController {
 
     private final MobileBotService mobileBotService;
+    private final MapService mapService;
 
     @Autowired
-    public BotController(MobileBotService mobileBotService) {
+    public BotController(MobileBotService mobileBotService, MapService mapService) {
         this.mobileBotService = mobileBotService;
+        this.mapService = mapService;
     }
 
     @GetMapping("/bots")
@@ -35,7 +38,9 @@ public class BotController {
     @RequestMapping("/bots/{cartSerial}")
     public String findBySerial(@PathVariable("cartSerial") int cartSerial, Model model){
         model.addAttribute("serial", mobileBotService.findBySerial(cartSerial));
-        return "currentBot";
+        List<Map> mapList = mapService.mapList();
+        model.addAttribute("map", mapList);
+        return "Coordinates";
     }
 
     @GetMapping("/bot-create")
@@ -48,13 +53,13 @@ public class BotController {
         if(bindingResult.hasErrors())
             return "bot-list";
         mobileBotService.saveBot(mobileBot);
-        return "redirect:/";
+        return "redirect:/bots";
     }
 
     @GetMapping("/deleteBot/{cartSerial}")
     public String deleteBot(@PathVariable(value = "cartSerial") int cartSerial){
         mobileBotService.deleteBot(cartSerial);
-        return "redirect:/";
+        return "redirect:/bots";
     }
 
     @GetMapping("/showFormForUpdate/{cartSerial}")
@@ -64,4 +69,6 @@ public class BotController {
         model.addAttribute("bot", mobileBot);
         return "update-bot";
     }
+
+
 }

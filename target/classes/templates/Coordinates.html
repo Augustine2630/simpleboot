@@ -4,52 +4,72 @@
     <meta charset="UTF-8">
     <title>Users</title>
     <style>
-        tr, td, th {
-            padding: 20px;
-        }
-        #tabel1{
+        #bot-table {
             position: absolute;
-            top: 1px;
-            left: 500px;
+            left: 1300px;
+            top: 30px;
+            font-size: 50px;
+            text-align: center;
         }
-        #tabel1 {
-            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-            font-size: 14px;
-            text-align: left;
+        .table {
             border-collapse: collapse;
-            border-radius: 20px;
-            box-shadow: 0 0 0 10px #F2906B;
-            color: #452F21;
+            border-spacing: 0;
+            overflow: hidden;
+            font-size: 50px;
+            font-weight: bold;
+        }
+        .table th, .table td {
+            border: 1px solid #888;
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+        }
+        .table th, .table td {
+            border: 1px solid #888;
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+        }
+        .table td:hover {
+            background: #fffabe;
+        }
+
+        .table td:hover:before {
+            background-color: #eee;
+            content: '';
+            height: 100%;
+            left: -5000px;
+            position: absolute;
+            top: 0;
+            width: 10000px;
+            z-index: -2;
+        }
+
+        .table td:hover:after {
+            background-color: #eee;
+            content: '';
+            height: 10000px;
+            left: 0;
+            position: absolute;
+            top: -5000px;
+            width: 100%;
+            z-index: -1;
+        }
+
+        #headers, #first {
+            background-color: cadetblue;
         }
 
     </style>
 </head>
 <body>
-<div th:switch="${coordinates}">
-    <h2 th:case="null">No users found!</h2>
-    <div th:case="*">
-        <h2>Users</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>First name</th>
-                <th>Last name</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="xy : ${coordinates}">
-                <td th:text="${xy.endX}"></td>
-                <td th:text="${xy.endY}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div id="tabel1">
-    <table border="2" style="text-align: center; font-weight: bold;">
+
+<div id="tableDiv">
+    <table  class="table">
         <thead>
-        <tr>
+        <tr id="headers">
             <th></th>
             <th>1</th>
             <th>2</th>
@@ -66,22 +86,37 @@
         <tbody>
 
         <tr th:each="map : ${map}">
-            <td th:text="${map.id}" th:href="@{/bots}"></td>
-            <td><a th:text="${map.one}" th:href="@{/bots}"></a></td>
-            <td th:text="${map.two}"></td>
-            <td th:text="${map.three}"></td>
-            <td th:text="${map.four}"></td>
-            <td th:text="${map.five}"></td>
-            <td th:text="${map.six}"></td>
-            <td th:text="${map.seven}"></td>
-            <td th:text="${map.eight}"></td>
-            <td th:text="${map.nine}"></td>
-            <td th:text="${map.ten}"></td>
+            <td id="first" th:text="${map.id}" th:href="@{/bots}"></td>
+            <td><a th:text="${map.one}" th:href="@{/map/{one}(one=${map.one})}"></a></td>
+            <td><a th:text="${map.two}" th:href="@{/bots}"></a></td>
+            <td><a th:text="${map.three}" th:href="@{/bots}"></a></td>
+            <td><a th:text="${map.four}" th:href="@{/bots}"></a></td>
+            <td><a th:text="${map.five}" th:href="@{/bots}"></a></td>
+            <td><a th:text="${map.six}" th:href="@{/bots}"></a></td>
+            <td><a th:text="${map.seven}" th:href="@{/bots}"></a></td>
+            <td><a th:text="${map.eight}" th:href="@{/bots}"></a></td>
+            <td><a th:text="${map.nine}" th:href="@{/bots}"></a></td>
+            <td><a th:text="${map.ten}" th:href="@{/bots}"></a></td>
 
         </tr>
 
         </tbody>
     </table>
+    <table id="bot-table">
+        <thead>
+        <tr>
+            <th>Выбранный робот</th>
+            <th>Цех</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sr : ${serial}">
+            <td th:text="${sr.cartSerial}"></td>
+            <td th:text="${sr.department}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
+
 </body>
 </html>

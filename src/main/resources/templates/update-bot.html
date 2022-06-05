@@ -2,18 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="ISO-8859-1">
+  <meta charset="UTF-8">
   <title>Bot Management System</title>
+
+
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <body>
-<div class="container">
-  <h1>Bot Management System</h1>
-  <hr>
-  <h2>Update Bot</h2>
 
+<div class="container">
+  <h1>Система управление мобильными платформами</h1>
+  <hr>
+  <h2>Добавить робота</h2>
   <form action="#" th:action="@{/bot-create}" th:object="${bot}" method="POST">
 
     <!-- Add hidden form field to handle update -->
@@ -23,12 +25,12 @@
 
     <input type="text" th:field="*{department}" class="form-control mb-4 col-4">
 
-    <button type="submit" class="btn btn-info col-2"> Update Bot</button>
+    <button type="submit" class="btn btn-info col-2"> Изменить</button>
   </form>
 
   <hr>
 
-  <a th:href="@{/bots}"> Back to Bot List</a>
+  <a th:href="@{/bots}"> Назад к списку</a>
 </div>
 </body>
 

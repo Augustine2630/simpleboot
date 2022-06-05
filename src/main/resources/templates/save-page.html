@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Add bot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
+<div class="container">
+    <h1>Система управление мобильными платформами</h1>
+    <hr>
+    <h2>Добавить робота</h2>
 <form action="#" th:action="@{/bot-create}" th:object="${mobileBot}" method="post">
-    <label for="firstName">Serial number</label>
-    <input type="text" th:field="*{cartSerial}" id="firstName" placeholder="Serial number">
+    <input type="hidden" th:field="*{id}" />
+    <label for="firstName">Серийный ключ</label>
+    <input class="form-control mb-4 col-4" type="text" th:field="*{cartSerial}" id="firstName" placeholder="Serial number">
     <td style="color:red" th:if="${#fields.hasErrors('cartSerial')}" th:errors="*{cartSerial}">Serial Error</td>
-    <label for="lastName">Department</label>
-    <input type="text" th:field="*{department}" id="lastName" placeholder="Department">
-    <input type="submit" value="Create Bot">
+    <label for="lastName">Цех</label>
+    <input class="form-control mb-4 col-4" type="text"  th:field="*{department}" id="lastName" placeholder="Department">
+    <input type="submit" class="btn btn-info col-2" value="Создать">
 </form>
+</div>
 </body>
 </html>
