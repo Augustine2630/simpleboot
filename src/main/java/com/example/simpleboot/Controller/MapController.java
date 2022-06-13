@@ -13,6 +13,7 @@ public class MapController {
 
     @GetMapping("/map/1:2")
     public String onetwo(){
+        System.out.println("System: метаданные обработаны");
         return "map/one-two";
     }
 

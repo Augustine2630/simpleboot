@@ -27,7 +27,7 @@ public class BotController {
         this.mapService = mapService;
     }
 
-    @GetMapping("/bots")
+    @GetMapping(value = {"/", "/bots"})
     public String findAll(Model model, Coordinates coordinates){
         List<MobileBot> bots = mobileBotService.findAll();
         model.addAttribute("bots", bots);
