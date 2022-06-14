@@ -13,9 +13,12 @@ public class Metadata {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    int id;
+    private int id;
 
     @Column(name = "meta_data")
-    String hashMetadata;
+    private String hashMetadata;
+
+    @Column(name = "cart_serial")
+    private String cartSerial;
 
 }
