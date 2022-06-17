@@ -1,3 +1,4 @@
+//spring класс позволяющий работать с моделью-сущностью metadata
 package com.example.simpleboot.Repo;
 
 import com.example.simpleboot.Model.Metadata;

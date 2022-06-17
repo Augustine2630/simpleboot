@@ -1,3 +1,4 @@
+//spring модель сущности bots в базе данных
 package com.example.simpleboot.Model;
 
 import lombok.Data;

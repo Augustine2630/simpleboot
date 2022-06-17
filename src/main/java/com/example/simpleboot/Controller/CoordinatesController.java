@@ -1,3 +1,4 @@
+//spring mvc контроллер для управления отправкой команд мобильной платформе
 package com.example.simpleboot.Controller;
 
 import com.example.simpleboot.Model.Coordinates;
@@ -30,15 +31,6 @@ public class CoordinatesController {
         return "Coordinates";
     }
 
-/*    @Deprecated
-    @RequestMapping("/map/{cartSerial}")
-    public String findCoordinates(@PathVariable("cartSerial") int cartSerial, Model model){
-            List<Coordinates> mapCoordinates = coordinatesService.findBySerialCoordinates(cartSerial);
-            model.addAttribute("coordinate", mapCoordinates);
-            return "road-page";
-    }*/
-
-
     @GetMapping("/calculate-page")
     public String createBotForm(Coordinates coordinates){
         return "calculate-page";
@@ -57,22 +49,5 @@ public class CoordinatesController {
 
         return "redirect:/map";
     }
-
-/*    @RequestMapping("/map/{one}")
-    public String findByOne(@PathVariable("one") String one, Model model){
-        List<Map> oneList = mapService.mapListOne(one);
-        model.addAttribute("one", oneList);
-        return "path-page";
-    }*/
-
-/*    @GetMapping("/map/{one}")
-    public String updateBot(@PathVariable("one") String one, Model model){
-        List<Map> oneList = mapService.mapListOne(one);
-
-        model.addAttribute("one", oneList);
-        return "path-page";
-    }*/
-
-
 
 }

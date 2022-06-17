@@ -88,15 +88,15 @@
         <tr th:each="map : ${map}">
             <td id="first" th:text="${map.id}" th:href="@{/bots}"></td>
             <td><a th:text="${map.one}" th:href="@{/map/{one}(one=${map.one})}"></a></td>
-            <td><a th:text="${map.two}" th:href="@{/bots}"></a></td>
-            <td><a th:text="${map.three}" th:href="@{/bots}"></a></td>
-            <td><a th:text="${map.four}" th:href="@{/bots}"></a></td>
-            <td><a th:text="${map.five}" th:href="@{/bots}"></a></td>
-            <td><a th:text="${map.six}" th:href="@{/bots}"></a></td>
-            <td><a th:text="${map.seven}" th:href="@{/bots}"></a></td>
-            <td><a th:text="${map.eight}" th:href="@{/bots}"></a></td>
-            <td><a th:text="${map.nine}" th:href="@{/bots}"></a></td>
-            <td><a th:text="${map.ten}" th:href="@{/bots}"></a></td>
+            <td><a th:text="${map.two}" th:href="@{/map/{one}(one=${map.two})}"></a></td>
+            <td><a th:text="${map.three}" th:href="@{/map/{one}(one=${map.three})}"></a></td>
+            <td><a th:text="${map.four}" th:href="@{/map/{one}(one=${map.four})}"></a></td>
+            <td><a th:text="${map.five}" th:href="@{/map/{one}(one=${map.five})}"></a></td>
+            <td><a th:text="${map.six}" th:href="@{/map/{one}(one=${map.six})}"></a></td>
+            <td><a th:text="${map.seven}" th:href="@{/map/{one}(one=${map.seven})}"></a></td>
+            <td><a th:text="${map.eight}" th:href="@{/map/{one}(one=${map.eight})}"></a></td>
+            <td><a th:text="${map.nine}" th:href="@{/map/{one}(one=${map.nine})}"></a></td>
+            <td><a th:text="${map.ten}" th:href="@{/map/{one}(one=${map.ten})}"></a></td>
 
         </tr>
 

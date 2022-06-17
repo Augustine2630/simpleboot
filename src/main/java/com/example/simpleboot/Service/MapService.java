@@ -1,3 +1,4 @@
+//spring класс serviсe необходимый для управления данными
 package com.example.simpleboot.Service;
 
 import com.example.simpleboot.Model.Map;
@@ -21,7 +22,4 @@ public class MapService {
         return mapRepository.findAll();
     }
 
-    public List<Map> mapListOne(String one){
-        return mapRepository.findByOne(one);
-    }
 }

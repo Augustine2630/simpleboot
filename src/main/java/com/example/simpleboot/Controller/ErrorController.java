@@ -1,3 +1,4 @@
+//spring mvc контроллер для обработки ошибок
 package com.example.simpleboot.Controller;
 
 import org.springframework.http.HttpStatus;

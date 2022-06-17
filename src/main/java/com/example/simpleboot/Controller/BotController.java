@@ -1,3 +1,4 @@
+///mvc котнроллер для управления данными в базе данных
 package com.example.simpleboot.Controller;
 
 import com.example.simpleboot.Model.Coordinates;

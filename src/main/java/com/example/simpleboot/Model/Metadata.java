@@ -1,3 +1,4 @@
+////spring модель сущности metadata в базе данных
 package com.example.simpleboot.Model;
 
 import lombok.Getter;

@@ -1,3 +1,4 @@
+//spring класс позволяющий работать с моделью-сущностью map
 package com.example.simpleboot.Repo;
 
 import com.example.simpleboot.Model.Map;
@@ -8,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface MapRepository extends JpaRepository<Map, Integer> {
-    List<Map> findByOne(String one);
+
 }

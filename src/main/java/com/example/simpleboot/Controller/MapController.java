@@ -1,3 +1,4 @@
+///spring mvc конроллер для создания карты
 package com.example.simpleboot.Controller;
 
 import org.springframework.stereotype.Controller;
