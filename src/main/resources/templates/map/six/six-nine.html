@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -22,10 +22,13 @@
     </style>
 </head>
 <body>
-<h1>Бот отправляется в 1:4</h1>
+<h1>Бот отправляется в 6:9</h1>
 <h2 id="one">1:1</h2>
-<h2 id="two">1:2</h2>
-<h2 id="three">1:4</h2>
+<div id="two">
+    <h2 th:if="${#lists.isEmpty(metadata)}">6:8</h2>
+    <h2 th:unless="${#lists.isEmpty(metadata)}">5:9</h2>
+</div>
+<h2 id="three">6:9</h2>
 <div id="roadd">
     <img th:src="@{/img/road.png}"/>
 </div>
